@@ -45,7 +45,8 @@ const DirectoryMenu = (props) => {
             { sections.map(o => <MenuItem key={ o.id }
                                           title={o.title} 
                                           imageUrl={o.imageUrl}
-                                          size={o.size}/>
+                                          size={o.size}
+                                          slug={o.linkUrl}/>
             ) }
         </div>
     );
