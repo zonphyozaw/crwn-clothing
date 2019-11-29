@@ -1,23 +1,18 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-import HomePage from './pages/Home/Home';
 
 import './App.scss';
+import ShopPage from './components/Shop/Shop';
+import HomePage from './pages/Home/Home';
 
-const Shop = (props) => {
-  return (
-    <div>
-      <h1>Shop Page</h1>
-      <div>{ props.location.pathname.split('/').pop().toUpperCase() }</div>
-    </div>
-  )
-}
 
 function App() {
   return (
-    <div>    
+    <div>   
+      <Switch>
         <Route exact path='/' component={ HomePage } />              
-        <Route path='/shop' component={Shop}/>
+        <Route path='/shop' component={ShopPage}/>
+      </Switch> 
     </div>
   );
 }
