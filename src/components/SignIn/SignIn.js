@@ -4,6 +4,7 @@ import './SignIn.scss';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 
+import { signInWithGoogle } from '../../firebase/FirebaseUtils';
 
 
 const SignIn = () => {
@@ -25,7 +26,7 @@ const SignIn = () => {
     };
 
     return (
-        <div className='sign-in'>
+        <div className='auth'>
             <h2>I already have an account</h2>
             <span>Sign with your email and password</span>
 
@@ -47,7 +48,12 @@ const SignIn = () => {
                     value={state.password}
                     required />
 
-                <CustomButton type="submit"> Submit Form </CustomButton>
+                <div className="buttons">
+                    <CustomButton type="submit"> Submit Form </CustomButton>
+                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn> Sign In With Google </CustomButton>
+                </div>
+
+
             </form>
         </div>
     )
