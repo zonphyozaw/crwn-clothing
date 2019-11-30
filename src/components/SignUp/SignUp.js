@@ -22,15 +22,25 @@ const SignUp = () => {
         setState(prevState => ({ ...prevState, [name]: value }));
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
-        setState({
-            displayName: '',
-            email: '',
-            password: '',
-            comfirmPassword: ''
-        });
+        const {displayName,email,password,confirmPassword} = state;
+        if(password !== confirmPassword){
+            alert("password didn't match");
+            return;
+        }
+        try {
+            const{user} = await auth.createUserWithEmailAndPassword(email,password);
+            await createUserProfileDocument(user,{displayName});
+            setState({
+                displayName: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+            });
+        } catch (err) {
+            console.error(e.message);
+        }
     };
 
 
@@ -73,7 +83,7 @@ const SignUp = () => {
                     label='Confirm Password'
                     required />
 
-                <CustomButton type='submit'></CustomButton>
+                <CustomButton type='submit'>SignUp</CustomButton>
             </form>
         </div>
     )
